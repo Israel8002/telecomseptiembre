@@ -1,0 +1,141 @@
+.barra-superior {
+  width: 100%;
+  height: 64px;
+  background-color: var(--fondo-elevado);
+  border-bottom: 1px solid var(--borde-tenue);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--espacio-lg);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.barra-superior-marca {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-sm);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--texto-primario);
+  letter-spacing: 0.02em;
+}
+
+.icono-marca-chico {
+  width: 28px;
+  height: 28px;
+}
+
+.barra-superior-derecha {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-md);
+}
+
+.badge-conectividad {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: var(--radio-sm);
+  background-color: var(--fondo-superficie);
+  border: 1px solid var(--borde-tenue);
+}
+
+.badge-conectividad.en-linea .punto-estado {
+  background-color: var(--color-exito);
+  box-shadow: 0 0 6px var(--color-exito);
+}
+
+.badge-conectividad.fuera-linea .punto-estado {
+  background-color: var(--color-aviso);
+  box-shadow: 0 0 6px var(--color-aviso);
+}
+
+.punto-estado {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.perfil-resumen {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-sm);
+}
+
+.avatar-miniatura {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--borde-medio);
+}
+
+.avatar-placeholder {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--fondo-campo);
+  color: var(--texto-primario);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border: 1px solid var(--borde-medio);
+}
+
+.datos-usuario-texto {
+  display: flex;
+  flex-direction: column;
+}
+
+.nombre-usuario {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--texto-primario);
+  line-height: 1.2;
+}
+
+.matricula-rol {
+  font-size: 0.75rem;
+  color: var(--texto-secundario);
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+}
+
+.badge-rol {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.badge-rol.admin {
+  background-color: rgba(37, 99, 235, 0.25);
+  color: #60A5FA;
+  border: 1px solid rgba(37, 99, 235, 0.4);
+}
+
+.badge-rol.usuario {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+@media (max-width: 640px) {
+  .barra-superior {
+    padding: 0 var(--espacio-md);
+  }
+  .datos-usuario-texto {
+    display: none;
+  }
+  .barra-superior-marca span {
+    display: none;
+  }
+}

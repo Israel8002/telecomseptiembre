@@ -1,0 +1,138 @@
+@import './variables.css';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100dvh;
+  background-color: var(--fondo-base);
+  color: var(--texto-primario);
+  font-family: var(--fuente-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Enlaces y botones base */
+a {
+  color: var(--color-primario);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* Estilos globales de formularios oscuros limpios */
+.campo-formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espacio-xs);
+  margin-bottom: var(--espacio-md);
+  width: 100%;
+}
+
+.etiqueta-formulario {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--texto-secundario);
+}
+
+.entrada-texto {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--espacio-md);
+  background-color: var(--fondo-campo);
+  border: 1px solid var(--borde-tenue);
+  border-radius: var(--radio-md);
+  color: var(--texto-primario);
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.entrada-texto:hover {
+  background-color: var(--fondo-campo-hover);
+}
+
+.entrada-texto:focus {
+  border-color: var(--borde-activo);
+  background-color: var(--fondo-campo-hover);
+}
+
+.texto-error {
+  font-size: 0.8rem;
+  color: var(--color-error);
+  margin-top: 2px;
+}
+
+/* Botón principal */
+.boton-primario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--espacio-lg);
+  background-color: var(--color-primario);
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radio-md);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.boton-primario:hover:not(:disabled) {
+  background-color: var(--color-primario-hover);
+}
+
+.boton-primario:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.boton-primario:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Botón secundario / discreto */
+.boton-secundario {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 var(--espacio-md);
+  background-color: var(--fondo-campo);
+  color: var(--texto-primario);
+  border: 1px solid var(--borde-tenue);
+  border-radius: var(--radio-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.boton-secundario:hover {
+  background-color: var(--fondo-campo-hover);
+  border-color: var(--borde-medio);
+}

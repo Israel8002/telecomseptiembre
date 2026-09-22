@@ -1,0 +1,43 @@
+:root {
+  /* Paleta 100% Oscura Profesional */
+  --fondo-base: #0A0A0A;
+  --fondo-elevado: #121212;
+  --fondo-superficie: #181818;
+  --fondo-campo: #1F1F1F;
+  --fondo-campo-hover: #262626;
+
+  /* Bordes sutiles sin tarjetas pesadas */
+  --borde-tenue: #262626;
+  --borde-medio: #383838;
+  --borde-activo: #3B82F6;
+
+  /* Tipografía y Textos de Alto Contraste */
+  --texto-primario: #F3F4F6;
+  --texto-secundario: #9CA3AF;
+  --texto-terciario: #6B7280;
+  --texto-invertido: #0A0A0A;
+
+  /* Colores de Acento y Estado */
+  --color-primario: #2563EB;
+  --color-primario-hover: #1D4ED8;
+  --color-exito: #10B981;
+  --color-aviso: #F59E0B;
+  --color-error: #EF4444;
+
+  /* Tipografía */
+  --fuente-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --fuente-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+
+  /* Espaciados */
+  --espacio-xs: 4px;
+  --espacio-sm: 8px;
+  --espacio-md: 16px;
+  --espacio-lg: 24px;
+  --espacio-xl: 32px;
+  --espacio-2xl: 48px;
+
+  /* Radio de bordes directo */
+  --radio-sm: 4px;
+  --radio-md: 8px;
+  --radio-lg: 12px;
+}
