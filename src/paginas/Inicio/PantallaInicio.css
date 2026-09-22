@@ -1,0 +1,10 @@
+.pantalla-inicio-contenedor {
+  width: 100%;
+  flex: 1;
+  min-height: calc(100dvh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--fondo-base);
+  padding: var(--espacio-lg);
+}

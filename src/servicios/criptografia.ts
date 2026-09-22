@@ -24,7 +24,8 @@ function bufferABase64(buffer: ArrayBuffer | Uint8Array): string {
  */
 function base64ABuffer(base64: string): Uint8Array {
   const binario = atob(base64);
-  const bytes = new Uint8Array(binario.length);
+  const buffer = new ArrayBuffer(binario.length);
+  const bytes = new Uint8Array(buffer);
   for (let i = 0; i < binario.length; i++) {
     bytes[i] = binario.charCodeAt(i);
   }
@@ -59,7 +60,7 @@ export async function derivarHashContrasena(contrasena: string, salBase64: strin
   const bitsDerivados = await crypto.subtle.deriveBits(
     {
       name: 'PBKDF2',
-      salt: datosSal,
+      salt: datosSal as unknown as BufferSource,
       iterations: ITERACIONES_PBKDF2,
       hash: 'SHA-256'
     },
