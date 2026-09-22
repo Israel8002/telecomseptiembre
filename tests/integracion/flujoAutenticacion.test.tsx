@@ -1,8 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import React from 'react';
 import { BaseDatosLocal } from '../../src/db/baseDatos';
-import { ProveedorAutenticacion } from '../../src/contextos/ContextoAutenticacion';
 import { App } from '../../src/App';
 
 describe('Flujo de Integración: Inicio -> Registro de Administrador -> Sesión Persistente -> Login', () => {
