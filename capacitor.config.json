@@ -1,0 +1,6 @@
+{
+  "appId": "org.imss.supervisioncuartos",
+  "appName": "Supervisión Cuartos Telecom",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}
