@@ -89,9 +89,11 @@ const ContenidoApp: React.FC = () => {
   );
 };
 
-export const App: React.FC = () => {
+import { BaseDatosLocal } from './db/baseDatos';
+
+export const App: React.FC<{ bd?: BaseDatosLocal }> = ({ bd }) => {
   return (
-    <ProveedorAutenticacion>
+    <ProveedorAutenticacion bd={bd}>
       <ContenidoApp />
     </ProveedorAutenticacion>
   );
