@@ -3,11 +3,43 @@
  * Optimiza las fotografías antes de guardarlas en IndexedDB para no saturar memoria.
  */
 
+export interface ResultadoCompresionEvidencia {
+  dataUrl: string;
+  ancho: number;
+  alto: number;
+  tamanoBytes: number;
+}
+
+export function generarIdFoto(): string {
+  const ahora = new Date();
+  const yyyy = ahora.getFullYear();
+  const mm = String(ahora.getMonth() + 1).padStart(2, '0');
+  const dd = String(ahora.getDate()).padStart(2, '0');
+  const hh = String(ahora.getHours()).padStart(2, '0');
+  const min = String(ahora.getMinutes()).padStart(2, '0');
+  const ss = String(ahora.getSeconds()).padStart(2, '0');
+  const aleatorioHex = Math.floor(Math.random() * 0x10000)
+    .toString(16)
+    .toUpperCase()
+    .padStart(4, '0');
+
+  return `FOTO-${yyyy}${mm}${dd}-${hh}${min}${ss}-${aleatorioHex}`;
+}
+
 export async function comprimirImagenPerfil(
   archivoODataUrl: File | string,
   maxDimension: number = 800,
   calidad: number = 0.8
 ): Promise<string> {
+  const res = await comprimirEvidenciaFotografica(archivoODataUrl, maxDimension, calidad);
+  return res.dataUrl;
+}
+
+export async function comprimirEvidenciaFotografica(
+  archivoODataUrl: File | string,
+  maxDimension: number = 1280,
+  calidad: number = 0.82
+): Promise<ResultadoCompresionEvidencia> {
   let dataUrlOriginal: string;
 
   if (typeof archivoODataUrl === 'string') {
@@ -43,13 +75,26 @@ export async function comprimirImagenPerfil(
 
       const contexto = canvas.getContext('2d');
       if (!contexto) {
-        resolve(dataUrlOriginal);
+        const bytes = Math.round((dataUrlOriginal.length * 3) / 4);
+        resolve({
+          dataUrl: dataUrlOriginal,
+          ancho: imagen.width,
+          alto: imagen.height,
+          tamanoBytes: bytes
+        });
         return;
       }
 
       contexto.drawImage(imagen, 0, 0, ancho, alto);
       const resultadoComprimido = canvas.toDataURL('image/jpeg', calidad);
-      resolve(resultadoComprimido);
+      const tamanoBytes = Math.round((resultadoComprimido.length * 3) / 4);
+
+      resolve({
+        dataUrl: resultadoComprimido,
+        ancho,
+        alto,
+        tamanoBytes
+      });
     };
 
     imagen.onerror = () => {

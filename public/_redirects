@@ -1,0 +1,4 @@
+/api/google-oauth/* https://oauth2.googleapis.com/:splat 200!
+/api/google-sheets/* https://sheets.googleapis.com/:splat 200!
+/api/google-drive/* https://www.googleapis.com/:splat 200!
+/* /index.html 200

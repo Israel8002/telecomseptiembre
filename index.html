@@ -3,9 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-    <meta name="theme-color" content="#0A0A0A" />
-    <meta name="description" content="Sistema de Supervisión de Cuartos de Comunicaciones de Unidades Médicas y Administrativas" />
-    <title>Supervisión Cuartos de Comunicaciones</title>
+    <meta name="theme-color" content="#12382B" />
+    <meta name="description" content="Sistema de Supervisión de Cuartos de Comunicaciones de Unidades Médicas y Administrativas IMSS" />
+    <title>Supervisión Telecom IMSS</title>
+    
+    <!-- PWA Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+
+    <!-- iOS / Safari Standalone Support -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Telecom IMSS" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -13,5 +26,62 @@
   <body style="margin: 0; background-color: #0A0A0A; color: #F3F4F6;">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // 1. Eliminar de inmediato cualquier botón flotante o badge inyectado por Netlify
+      (function() {
+        function eliminarBadgeNetlify() {
+          var selectores = [
+            '#netlify-collaborative-tools',
+            '.netlify-drawer',
+            '.netlify-badge',
+            '[data-netlify-deploy-id]',
+            'iframe[src*="netlify"]',
+            'iframe[title*="Netlify"]',
+            'div[class*="netlify-feedback"]',
+            'div[id*="netlify-feedback"]',
+            'div[class*="netlify-drawer"]',
+            'div[id*="netlify-drawer"]'
+          ];
+          for (var i = 0; i < selectores.length; i++) {
+            var elems = document.querySelectorAll(selectores[i]);
+            for (var j = 0; j < elems.length; j++) {
+              elems[j].remove();
+            }
+          }
+          var todos = document.querySelectorAll('a, div, button');
+          for (var k = 0; k < todos.length; k++) {
+            var el = todos[k];
+            var texto = (el.innerText || el.textContent || '').toLowerCase();
+            var aria = (el.getAttribute('aria-label') || '').toLowerCase();
+            if (texto.indexOf('netlify') !== -1 || aria.indexOf('netlify') !== -1) {
+              var pos = window.getComputedStyle(el).position;
+              if (pos === 'fixed' || pos === 'absolute') {
+                el.remove();
+              }
+            }
+          }
+        }
+        eliminarBadgeNetlify();
+        if (window.MutationObserver) {
+          var observador = new MutationObserver(eliminarBadgeNetlify);
+          observador.observe(document.documentElement, { childList: true, subtree: true });
+        }
+        window.addEventListener('DOMContentLoaded', eliminarBadgeNetlify);
+        window.addEventListener('load', eliminarBadgeNetlify);
+      })();
+
+      // 2. Registro de Service Worker para habilitar instalación nativa PWA en Chrome / Android / iOS
+      if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost')) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(function(reg) {
+              console.log('PWA ServiceWorker registrado con éxito:', reg.scope);
+            })
+            .catch(function(err) {
+              console.warn('Error al registrar ServiceWorker PWA:', err);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

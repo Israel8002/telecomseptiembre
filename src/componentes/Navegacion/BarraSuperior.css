@@ -1,57 +1,66 @@
+/* ==========================================================================
+   BARRA SUPERIOR Y NAVEGACIÓN INSTITUCIONAL IMSS
+   ========================================================================== */
+
 .barra-superior {
   width: 100%;
   height: 64px;
-  background-color: var(--fondo-elevado);
-  border-bottom: 1px solid var(--borde-tenue);
+  background-color: var(--fondo-elevado, #111827);
+  border-bottom: 1px solid var(--borde-tenue, rgba(255, 255, 255, 0.08));
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--espacio-lg);
+  padding: 0 var(--espacio-lg, 1.5rem);
   position: sticky;
   top: 0;
   z-index: 100;
+  box-sizing: border-box;
 }
 
 .barra-superior-marca {
   display: flex;
   align-items: center;
-  gap: var(--espacio-sm);
+  gap: var(--espacio-sm, 0.5rem);
   font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--texto-primario);
+  font-size: 1.05rem;
+  color: var(--texto-primario, #f3f4f6);
   letter-spacing: 0.02em;
+  user-select: none;
 }
 
 .icono-marca-chico {
   width: 28px;
   height: 28px;
+  flex-shrink: 0;
 }
 
 .barra-superior-derecha {
   display: flex;
   align-items: center;
-  gap: var(--espacio-md);
+  gap: var(--espacio-md, 1rem);
 }
 
 .badge-conectividad {
   display: flex;
   align-items: center;
-  gap: var(--espacio-xs);
-  font-size: 0.8rem;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
   padding: 4px 10px;
-  border-radius: var(--radio-sm);
-  background-color: var(--fondo-superficie);
-  border: 1px solid var(--borde-tenue);
+  border-radius: var(--radio-sm, 6px);
+  background-color: var(--fondo-superficie, #1f2937);
+  border: 1px solid var(--borde-tenue, rgba(255, 255, 255, 0.08));
+  white-space: nowrap;
 }
 
 .badge-conectividad.en-linea .punto-estado {
-  background-color: var(--color-exito);
-  box-shadow: 0 0 6px var(--color-exito);
+  background-color: #10b981;
+  box-shadow: 0 0 6px #10b981;
 }
 
 .badge-conectividad.fuera-linea .punto-estado {
-  background-color: var(--color-aviso);
-  box-shadow: 0 0 6px var(--color-aviso);
+  background-color: #f59e0b;
+  box-shadow: 0 0 6px #f59e0b;
 }
 
 .punto-estado {
@@ -63,7 +72,7 @@
 .perfil-resumen {
   display: flex;
   align-items: center;
-  gap: var(--espacio-sm);
+  gap: var(--espacio-sm, 0.5rem);
 }
 
 .avatar-miniatura {
@@ -71,21 +80,21 @@
   height: 36px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--borde-medio);
+  border: 1px solid var(--borde-medio, #374151);
 }
 
 .avatar-placeholder {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background-color: var(--fondo-campo);
-  color: var(--texto-primario);
+  background-color: #1f2937;
+  color: var(--texto-primario, #f3f4f6);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 0.85rem;
-  border: 1px solid var(--borde-medio);
+  border: 1px solid var(--borde-medio, #374151);
 }
 
 .datos-usuario-texto {
@@ -94,48 +103,358 @@
 }
 
 .nombre-usuario {
-  font-size: 0.875rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: var(--texto-primario);
+  color: var(--texto-primario, #f3f4f6);
   line-height: 1.2;
 }
 
 .matricula-rol {
-  font-size: 0.75rem;
-  color: var(--texto-secundario);
+  font-size: 0.72rem;
+  color: var(--texto-secundario, #9ca3af);
   display: flex;
   align-items: center;
-  gap: var(--espacio-xs);
+  gap: 4px;
 }
 
 .badge-rol {
   font-size: 0.65rem;
   font-weight: 700;
-  padding: 1px 4px;
-  border-radius: 2px;
+  padding: 1px 5px;
+  border-radius: 4px;
   text-transform: uppercase;
 }
 
 .badge-rol.admin {
   background-color: rgba(37, 99, 235, 0.25);
-  color: #60A5FA;
+  color: #60a5fa;
   border: 1px solid rgba(37, 99, 235, 0.4);
 }
 
 .badge-rol.usuario {
   background-color: rgba(16, 185, 129, 0.2);
-  color: #34D399;
+  color: #34d399;
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
-@media (max-width: 640px) {
+.boton-navegacion-admin {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background-color: rgba(37, 99, 235, 0.15);
+  color: #93c5fd;
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.boton-navegacion-admin:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+.boton-navegacion-admin.activo {
+  background-color: #1e3a8a;
+  color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+/* Botón Hamburguesa Móvil */
+.boton-hamburguesa-movil {
+  display: none;
+  background: none;
+  border: none;
+  color: #f3f4f6;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.boton-hamburguesa-movil:active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   DRAWER / MENÚ HAMBURGUESA PARA CELULAR
+   ========================================================================== */
+
+.overlay-menu-movil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  justify-content: flex-end;
+  animation: fadeIn 0.2s ease;
+}
+
+.drawer-menu-movil {
+  width: 82%;
+  max-width: 320px;
+  height: 100%;
+  background-color: #0f172a;
+  border-left: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
+  animation: slideLeft 0.25s ease;
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.cabecera-drawer {
+  padding: 1.25rem 1rem;
+  background-color: #1e293b;
+  border-bottom: 1px solid #334155;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.perfil-drawer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar-drawer {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3b82f6;
+}
+
+.avatar-placeholder-drawer {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.nombre-drawer {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.matricula-rol-drawer {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.2rem;
+}
+
+.boton-cerrar-drawer {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.cuerpo-drawer {
+  padding: 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  flex: 1;
+}
+
+.seccion-drawer-sync {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label-drawer {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+}
+
+.enlaces-drawer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item-enlace-drawer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: none;
+  border: 1px solid transparent;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.item-enlace-drawer:active,
+.item-enlace-drawer.activo {
+  background-color: rgba(37, 99, 235, 0.2);
+  color: #93c5fd;
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+.icono-drawer {
+  font-size: 1.15rem;
+}
+
+.pie-drawer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.boton-cerrar-sesion-drawer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.boton-cerrar-sesion-drawer:active {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN INFERIOR NATIVA (BOTTOM TAB BAR)
+   ========================================================================== */
+
+.barra-inferior-nativa {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #0b1329;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  z-index: 95;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.tab-inferior {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 1;
+  transition: all 0.15s ease;
+}
+
+.tab-inferior:active,
+.tab-inferior.activa {
+  color: #60a5fa;
+}
+
+.icono-tab-inferior {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.texto-tab-inferior {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.tab-inferior-sync {
+  flex: 1.2;
+}
+
+/* Reglas de visualización en pantallas móviles */
+@media (max-width: 768px) {
+  .barra-inferior-nativa {
+    display: flex;
+  }
+
+  .boton-hamburguesa-movil {
+    display: flex;
+  }
+
+  .perfil-escritorio,
+  .boton-salir-escritorio,
+  .contenedor-sync-escritorio,
+  .boton-admin-escritorio {
+    display: none !important;
+  }
+
+  .texto-marca {
+    font-size: 0.95rem;
+  }
+
+  /* Padding inferior al contenedor principal para que la barra inferior no tape botones */
+  body {
+    padding-bottom: 64px;
+  }
+}
+
+@media (max-width: 480px) {
   .barra-superior {
-    padding: 0 var(--espacio-md);
+    padding: 0 0.75rem;
   }
-  .datos-usuario-texto {
-    display: none;
-  }
-  .barra-superior-marca span {
+
+  .texto-marca {
     display: none;
   }
 }

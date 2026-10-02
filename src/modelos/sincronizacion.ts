@@ -2,7 +2,12 @@
  * Modelos para la cola de sincronización local
  */
 
-export type TipoEntidadSincronizable = 'USUARIO' | 'EVALUACION' | 'FOTOGRAFIA' | 'REPORTE';
+export type TipoEntidadSincronizable =
+  | 'USUARIO'
+  | 'EVALUACION'
+  | 'FOTOGRAFIA'
+  | 'EVIDENCIA_FOTOGRAFICA'
+  | 'REPORTE';
 export type TipoOperacionSincronizacion = 'CREAR' | 'ACTUALIZAR' | 'ELIMINAR';
 export type EstadoSincronizacion = 'PENDIENTE' | 'PROCESANDO' | 'SINCRONIZADO' | 'FALLIDO';
 

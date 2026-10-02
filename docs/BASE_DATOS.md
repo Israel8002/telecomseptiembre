@@ -59,3 +59,32 @@ Almacena la sesión activa del usuario para garantizar la persistencia local ant
 | `nombreCompleto` | `string` | No indexado | Nombre para visualización |
 | `rol` | `RolUsuario` | No indexado | Rol activo |
 | `iniciadoEn` | `string` (ISO) | No indexado | Fecha y hora de inicio de sesión |
+
+### 2.4 Tabla: `evaluaciones` (Etapa 2)
+Almacena las evaluaciones de cuartos de telecomunicaciones, avance y respuestas normativas.
+
+| Campo | Tipo | Clave / Índice | Descripción |
+|---|---|---|---|
+| `id` | `string` | Primaria (`IDEVALUACION`) | Formato `EVAL-YYYYMMDD-HHMMSS-MATRICULA-HEX4` |
+| `idUsuario` | `string` | Indexado | ID técnico del evaluador |
+| `matriculaEvaluador` | `string` | Indexado | Matrícula del evaluador |
+| `nombreEvaluador` | `string` | No indexado | Nombre del técnico evaluador |
+| `ooad` | `string` | No indexado | OOAD / Delegación IMSS |
+| `unidad` | `string` | Indexado | Unidad médica o administrativa supervisada |
+| `tipoCuarto` | `TipoCuartoTelecom` | Indexado | `MDF`, `IDF_TELECOM`, `IDF_INFORMATICA`, etc. |
+| `ubicacionDetallada` | `string` | No indexado | Referencia física o nivel en inmueble |
+| `estado` | `'EN_PROCESO' \| 'COMPLETADA'` | Indexado | Estado de la evaluación |
+| `respuestas` | `Record<string, RespuestaCriterio>` | No indexado | Mapa de respuestas por reactivo |
+| `porcentajeAvance` | `number` | No indexado | Progreso en porcentaje (0 a 100) |
+| `calificacionCumplimiento` | `number` | No indexado | Calificación ponderada de cumplimiento |
+| `totalCriterios` | `number` | No indexado | Total de criterios del catálogo (24) |
+| `totalRespondidos` | `number` | No indexado | Criterios contestados |
+| `totalCumple` | `number` | No indexado | Criterios con cumplimiento |
+| `totalNoCumple` | `number` | No indexado | Hallazgos de incumplimiento |
+| `totalNoAplica` | `number` | No indexado | Criterios no aplicables |
+| `creadoEn` | `string` (ISO) | Indexado | Fecha y hora de reserva y creación |
+| `actualizadoEn` | `string` (ISO) | Indexado | Fecha y hora del último autoguardado |
+| `finalizadoEn` | `string \| null` | No indexado | Fecha y hora de conclusión |
+| `sincronizado` | `boolean` | No indexado | Bandera de sincronización con Sheets/Drive |
+| `version` | `number` | No indexado | Control de concurrencia optimista |
+

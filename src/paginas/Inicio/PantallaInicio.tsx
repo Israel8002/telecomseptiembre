@@ -11,7 +11,7 @@ export const PantallaInicio: React.FC<PropsPantallaInicio> = ({ alPresionarLogo 
     <main className="pantalla-inicio-contenedor" aria-label="Pantalla de Inicio">
       <LogoInteractivo
         alPresionar={alPresionarLogo}
-        subtitulo="Presione para iniciar supervisión"
+        subtitulo="Nueva Supervisión"
       />
     </main>
   );

@@ -17,9 +17,9 @@ describe('Flujo de Integración: Inicio -> Registro de Administrador -> Sesión 
     render(<App bd={bdPrueba} />);
 
     // 1. Verificar que arranca en la pantalla de inicio limpia mostrando solo el logo
-    const botonLogo = await screen.findByRole('button', { name: /Iniciar evaluación/i });
+    const botonLogo = await screen.findByRole('button', { name: /Nueva Supervisión/i });
     expect(botonLogo).toBeInTheDocument();
-    expect(screen.getByText(/Presione para iniciar supervisión/i)).toBeInTheDocument();
+    expect(screen.getByText(/Nueva Supervisión/i)).toBeInTheDocument();
 
     // 2. Presionar el logo cuando la base de datos está vacía
     fireEvent.click(botonLogo);
@@ -41,9 +41,9 @@ describe('Flujo de Integración: Inicio -> Registro de Administrador -> Sesión 
     fireEvent.click(botonRegistro);
 
     // 6. Verificar que ingresa al Panel Principal con rol de Administrador
-    expect(await screen.findByText(/Bienvenido, Ing. Carlos Mendoza/i)).toBeInTheDocument();
-    expect(screen.getByText(/Administrador General/i)).toBeInTheDocument();
-    expect(screen.getByText('99012345')).toBeInTheDocument();
+    expect(await screen.findByText(/Ing. Carlos Mendoza/i)).toBeInTheDocument();
+    expect(screen.getByText(/^ADMIN$/)).toBeInTheDocument();
+    expect(screen.getByText(/99012345/i)).toBeInTheDocument();
 
     // 7. Cerrar sesión
     const botonSalir = screen.getByRole('button', { name: /Salir/i });
@@ -51,10 +51,10 @@ describe('Flujo de Integración: Inicio -> Registro de Administrador -> Sesión 
 
     // 8. Vuelve a la pantalla de Inicio
     await waitFor(() => {
-      expect(screen.queryByText(/Bienvenido, Ing. Carlos Mendoza/i)).not.toBeInTheDocument();
+      expect(screen.queryByText(/Ing. Carlos Mendoza/i)).not.toBeInTheDocument();
     });
 
-    const subtituloInicio = await screen.findByText(/Presione para iniciar supervisión/i);
+    const subtituloInicio = await screen.findByText(/Nueva Supervisión/i);
     expect(subtituloInicio).toBeInTheDocument();
 
     // 9. Al presionar el logo ahora que ya hay un usuario registrado, debe llevar a Iniciar Sesión
@@ -69,7 +69,7 @@ describe('Flujo de Integración: Inicio -> Registro de Administrador -> Sesión 
     fireEvent.click(screen.getByRole('button', { name: /Iniciar Sesión/i }));
 
     // 11. Verificar que vuelve a entrar correctamente
-    expect(await screen.findByText(/Bienvenido, Ing. Carlos Mendoza/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Ing. Carlos Mendoza/i)).toBeInTheDocument();
   });
 
   it('debe registrar al segundo usuario como Usuario Técnico (USUARIO_NORMAL)', async () => {
@@ -87,7 +87,7 @@ describe('Flujo de Integración: Inicio -> Registro de Administrador -> Sesión 
     render(<App bd={bdPrueba} />);
 
     // 2. Presionar el logo -> debe llevar a Login porque ya existe un usuario
-    const subtituloInicio = await screen.findByText(/Presione para iniciar supervisión/i);
+    const subtituloInicio = await screen.findByText(/Nueva Supervisión/i);
     const botonLogoInicio = subtituloInicio.closest('button');
     fireEvent.click(botonLogoInicio!);
 
@@ -110,7 +110,7 @@ describe('Flujo de Integración: Inicio -> Registro de Administrador -> Sesión 
     fireEvent.click(screen.getByRole('button', { name: /Completar Registro/i }));
 
     // 6. Verificar que ingresa con rol "Usuario Técnico"
-    expect(await screen.findByText(/Bienvenido, Técnico Telecom/i)).toBeInTheDocument();
-    expect(screen.getByText(/Usuario Técnico/i)).toBeInTheDocument();
+    expect(await screen.findByText(/Técnico Telecom/i)).toBeInTheDocument();
+    expect(screen.getByText(/^TÉCNICO$/)).toBeInTheDocument();
   });
 });

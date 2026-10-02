@@ -5,20 +5,24 @@ import { PantallaInicio } from './paginas/Inicio/PantallaInicio';
 import { PantallaRegistro } from './paginas/Registro/PantallaRegistro';
 import { PantallaLogin } from './paginas/Login/PantallaLogin';
 import { PantallaPrincipal } from './paginas/PanelPrincipal/PantallaPrincipal';
+import { PantallaEvaluacion } from './paginas/Evaluacion/PantallaEvaluacion';
+import { PantallaAdministracion } from './paginas/Administracion/PantallaAdministracion';
 import './estilos/global.css';
 
-type Vista = 'inicio' | 'login' | 'registro' | 'principal';
+type Vista = 'inicio' | 'login' | 'registro' | 'principal' | 'evaluacion' | 'administracion';
 
 const ContenidoApp: React.FC = () => {
   const { sesion, usuario, cargando, estaEnLinea, totalUsuarios, cerrarSesion } = useAutenticacion();
   const [vista, setVista] = useState<Vista>('inicio');
+  const [idEvaluacionActiva, setIdEvaluacionActiva] = useState<string | null>(null);
 
   useEffect(() => {
     if (!cargando) {
       if (sesion) {
-        setVista('principal');
+        setVista((prev) => (prev === 'evaluacion' || prev === 'administracion' ? prev : 'principal'));
       } else {
         setVista('inicio');
+        setIdEvaluacionActiva(null);
       }
     }
   }, [sesion, cargando]);
@@ -64,6 +68,9 @@ const ContenidoApp: React.FC = () => {
         estaEnLinea={estaEnLinea}
         alCerrarSesion={alCerrarSesion}
         alHacerClicMarca={() => setVista(sesion ? 'principal' : 'inicio')}
+        alIrAAdmin={() => setVista('administracion')}
+        alIrAPrincipal={() => setVista('principal')}
+        vistaActual={vista}
       />
 
       {vista === 'inicio' && <PantallaInicio alPresionarLogo={alPresionarLogoInicio} />}
@@ -84,7 +91,38 @@ const ContenidoApp: React.FC = () => {
         />
       )}
 
-      {vista === 'principal' && <PantallaPrincipal />}
+      {vista === 'principal' && (
+        <PantallaPrincipal
+          alContinuarEvaluacion={(id) => {
+            setIdEvaluacionActiva(id);
+            setVista('evaluacion');
+          }}
+        />
+      )}
+
+      {vista === 'administracion' && (
+        <PantallaAdministracion
+          alVolver={() => setVista('principal')}
+          alVerEvaluacion={(id) => {
+            setIdEvaluacionActiva(id);
+            setVista('evaluacion');
+          }}
+        />
+      )}
+
+      {vista === 'evaluacion' && idEvaluacionActiva && (
+        <PantallaEvaluacion
+          idEvaluacion={idEvaluacionActiva}
+          alVolver={() => {
+            setIdEvaluacionActiva(null);
+            setVista('principal');
+          }}
+          alFinalizada={() => {
+            setIdEvaluacionActiva(null);
+            setVista('principal');
+          }}
+        />
+      )}
     </div>
   );
 };

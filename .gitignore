@@ -21,4 +21,9 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
+.kilo
+private_key/
+private_key/*
+.env
+.env.*
+*.pem

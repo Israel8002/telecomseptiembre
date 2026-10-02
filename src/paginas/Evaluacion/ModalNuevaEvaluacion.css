@@ -1,0 +1,97 @@
+.modal-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espacio-md);
+  z-index: 1000;
+  animation: fadeIn 0.15s ease-out;
+}
+
+.modal-contenido {
+  background-color: var(--fondo-elevado);
+  border: 1px solid var(--borde-medio);
+  border-radius: var(--radio-lg);
+  width: 100%;
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: var(--espacio-xl);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+}
+
+.modal-cabecera {
+  margin-bottom: var(--espacio-lg);
+  border-bottom: 1px solid var(--borde-tenue);
+  padding-bottom: var(--espacio-md);
+}
+
+.modal-titulo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--texto-primario);
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-sm);
+}
+
+.modal-subtitulo {
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+  margin-top: 4px;
+}
+
+.selector-formulario {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--espacio-md);
+  background-color: var(--fondo-campo);
+  border: 1px solid var(--borde-tenue);
+  border-radius: var(--radio-md);
+  color: var(--texto-primario);
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.selector-formulario:focus {
+  border-color: var(--borde-activo);
+  background-color: var(--fondo-campo-hover);
+}
+
+.selector-formulario option {
+  background-color: var(--fondo-elevado);
+  color: var(--texto-primario);
+}
+
+.modal-acciones {
+  display: flex;
+  gap: var(--espacio-md);
+  margin-top: var(--espacio-lg);
+  justify-content: flex-end;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+  .modal-contenido {
+    padding: var(--espacio-md);
+  }
+  .modal-acciones {
+    flex-direction: column-reverse;
+  }
+  .modal-acciones button {
+    width: 100%;
+  }
+}

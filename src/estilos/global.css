@@ -136,3 +136,30 @@ button {
   background-color: var(--fondo-campo-hover);
   border-color: var(--borde-medio);
 }
+
+/* Ocultar cualquier botón flotante, badge o drawer inyectado por Netlify */
+#netlify-collaborative-tools,
+.netlify-drawer,
+.netlify-badge,
+[data-netlify-deploy-id],
+iframe[src*="netlify"],
+iframe[title*="Netlify"],
+div[class*="netlify-feedback"],
+div[id*="netlify-feedback"],
+div[class*="netlify-drawer"],
+div[id*="netlify-drawer"],
+a[href*="netlify.com"][style*="position: fixed"],
+a[href*="netlify.com"][style*="position: absolute"],
+button[aria-label*="Netlify"],
+div[style*="z-index: 2147483647"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+

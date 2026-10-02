@@ -4,13 +4,16 @@ import { SesionLocal } from '../modelos/sesion';
 import { BaseDatosLocal, bdLocal } from '../db/baseDatos';
 import { RepositorioUsuarios } from '../db/repositorios/repositorioUsuarios';
 import { obtenerEstadoRedActual, suscribirEstadoRed } from '../servicios/detectorRed';
+import { ProcesadorSincronizacion } from '../servicios/google/procesadorSincronizacion';
 
 interface ContextoAutenticacionTipo {
+  bd: BaseDatosLocal;
   sesion: SesionLocal | null;
   usuario: Usuario | null;
   cargando: boolean;
   estaEnLinea: boolean;
   totalUsuarios: number;
+  procesador: ProcesadorSincronizacion;
   iniciarSesion: (matricula: string, contrasena: string) => Promise<void>;
   registrar: (datos: DatosRegistroUsuario) => Promise<Usuario>;
   cerrarSesion: () => Promise<void>;
@@ -26,6 +29,7 @@ interface PropsProveedor {
 
 export const ProveedorAutenticacion: React.FC<PropsProveedor> = ({ children, bd = bdLocal }) => {
   const [repositorio] = useState(() => new RepositorioUsuarios(bd));
+  const [procesador] = useState(() => new ProcesadorSincronizacion(bd));
   const [sesion, setSesion] = useState<SesionLocal | null>(null);
   const [usuario, setUsuario] = useState<Usuario | null>(null);
   const [cargando, setCargando] = useState<boolean>(true);
@@ -96,11 +100,13 @@ export const ProveedorAutenticacion: React.FC<PropsProveedor> = ({ children, bd 
   return (
     <ContextoAutenticacion.Provider
       value={{
+        bd,
         sesion,
         usuario,
         cargando,
         estaEnLinea,
         totalUsuarios,
+        procesador,
         iniciarSesion,
         registrar,
         cerrarSesion,

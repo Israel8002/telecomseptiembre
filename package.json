@@ -11,15 +11,21 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@capacitor/android": "^6.2.2",
     "@capacitor/cli": "^6.0.0",
     "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.2.2",
     "dexie": "^4.0.8",
+    "jspdf": "^4.2.1",
+    "jszip": "^3.10.2",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^15.0.0",
+    "@types/jszip": "^3.4.0",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.1",
