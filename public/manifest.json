@@ -1,8 +1,8 @@
 {
   "id": "/",
-  "name": "Supervisión Cuartos Telecom IMSS",
-  "short_name": "Telecom IMSS",
-  "description": "Sistema de Supervisión Técnica de Cuartos de Comunicaciones y Redes IMSS",
+  "name": "Telecom CDI",
+  "short_name": "Telecom CDI",
+  "description": "Supervisión de Telecomunicaciones y Cuartos de Comunicaciones - Telecom CDI",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
