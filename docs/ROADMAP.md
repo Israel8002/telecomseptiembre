@@ -98,3 +98,21 @@
 - [x] Modal de auditoría transaccional para inspección de respuestas, evidencias fotográficas vinculadas e historial de sincronización.
 - [x] Suite de pruebas automatizadas al 100% pasando sin errores (19 suites, 69 pruebas).
 
+---
+
+## Etapa 7: PWA, Identidad Visual Institucional y Despliegue en Producción (COMPLETADA)
+- [x] Configuración de Progressive Web App (PWA) instalable de nivel de producción (`manifest.json`, `index.html` meta tags, modo standalone).
+- [x] Identidad de marca oficial **"Telecom CDI"**:
+  - Nombre oficial en manifest web, barra de navegación, títulos móviles y `capacitor.config.json`.
+  - Íconos institucionales personalizados en alta resolución (192x192 y 512x512).
+  - Generación y distribución de recursos gráficos nativos Android (`mipmap-mdpi`, `hdpi`, `xhdpi`, `xxhdpi`, `xxxhdpi`) e iOS (`AppIcon.appiconset`).
+- [x] Solución de cuotas de almacenamiento de Google Drive vía puente Google Apps Script Web App (`google_apps_script_bridge.js`):
+  - Subida directa con token o reenvío transparente para cuentas personales/institucionales sin límite por Service Account.
+  - Conexión preconfigurada de respaldo en `googleConfig.ts`.
+- [x] Despliegue en producción con CI/CD automatizado:
+  - Repositorio oficial en GitHub: `https://github.com/Israel8002/telecomseptiembre`.
+  - Despliegue en vivo en Netlify: `https://cditelecom.netlify.app`.
+  - Configuración declarativa `netlify.toml` con cabeceras de seguridad y variables de entorno.
+  - Supresión total del banner/botón flotante publicitario "Powered by Netlify" mediante configuración de compilación, inyección de estilos y `MutationObserver` defensivo.
+- [x] Empaquetado de producción validado con `npm run build` y sincronizado en plataformas nativas con `npx cap copy`.
+
